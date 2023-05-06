@@ -52,5 +52,6 @@ public class DashBoard extends JFrame implements AirplaneContract.View {
     @Override
     public void start() {
         this.setVisible(true);
+        GlobalConfigs.realFrameHeight = principalPanel.getHeight();
     }
 }

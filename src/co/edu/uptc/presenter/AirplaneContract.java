@@ -19,7 +19,7 @@ public interface AirplaneContract {
         boolean isPaused();
         boolean isRunning();
         String getAirplanesLandedCount();
-        String getAirplanesFlighting();
+        String getAirplanesFlying();
         String getTimeInRunning();
     }
     interface Presenter{
@@ -39,7 +39,7 @@ public interface AirplaneContract {
         boolean isPaused();
         boolean isRunning();
         String getAirplanesLandedCount();
-        String getAirplanesFlighting();
+        String getAirplanesFlying();
         String getTimeInRunning();
     }
     interface View{

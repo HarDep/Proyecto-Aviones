@@ -77,7 +77,7 @@ public class Pilot extends Thread {
             xs.set(0,airplane.getPosX()-1);
             ys.set(0, airplane.getPosY()-1);
             isToUp = true;
-        }else if (airplane.getPosY() < 623 && airplane.getPosX() < GlobalConfigs.FRAME_WIDTH){
+        }else if (airplane.getPosY() < GlobalConfigs.realFrameHeight && airplane.getPosX() < GlobalConfigs.FRAME_WIDTH){
             xs.set(0,airplane.getPosX()+1);
             ys.set(0, airplane.getPosY()+1);
             isToUp = false;
@@ -110,9 +110,9 @@ public class Pilot extends Thread {
     }
 
     private void checkFinish() {
-        int yMin = (663 / 2) - (GlobalConfigs.AIRSTRIP_HEIGHT / 2);
+        int yMin = (GlobalConfigs.realFrameHeight / 2) - (GlobalConfigs.AIRSTRIP_HEIGHT / 2);
         int xTotal = (GlobalConfigs.FRAME_WIDTH / 2) + (GlobalConfigs.AIRSTRIP_WIDTH / 2);
-        int yMax = (663 / 2) + (GlobalConfigs.AIRSTRIP_HEIGHT / 2);
+        int yMax = (GlobalConfigs.realFrameHeight / 2) + (GlobalConfigs.AIRSTRIP_HEIGHT / 2);
         int x = airplane.getPosX() + (GlobalConfigs.AIRPLANE_WIDTH / 2);
         if (x == xTotal && airplane.getPosY() > yMin && airplane.getPosY() < yMax && (!isTerminate)){
             synchronized (managerAirplanes.airplanes){

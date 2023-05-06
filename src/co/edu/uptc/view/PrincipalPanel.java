@@ -41,8 +41,8 @@ public class PrincipalPanel extends JPanel {
     }
     private void paintGame(Graphics2D graphics2D){
         graphics2D.setColor(Color.RED);
-        graphics2D.drawImage(UtilImages.getInstanceAirstrip(),(dashBoard.getWidth()/2) - 225,
-                (dashBoard.getHeight()/2) - 25,null);
+        graphics2D.drawImage(UtilImages.getInstanceAirstrip(),(dashBoard.getWidth()/2) - (GlobalConfigs.AIRSTRIP_WIDTH
+                / 2), (dashBoard.getHeight()/2) - (GlobalConfigs.AIRSTRIP_HEIGHT / 2),null);
         if (posXs!=null){
             if (posXs.size()>0){
                 int[] xs = dashBoard.presenter.parseToIntArray(new ArrayList<>(posXs));
@@ -66,7 +66,7 @@ public class PrincipalPanel extends JPanel {
             }
         }
         graphics2D.setColor(Color.magenta);
-        graphics2D.drawString(dashBoard.presenter.getAirplanesFlighting(), 20, 553);
+        graphics2D.drawString(dashBoard.presenter.getAirplanesFlying(), 20, 553);
         graphics2D.drawString(dashBoard.presenter.getAirplanesLandedCount(), 20,608);
     }
 
@@ -87,7 +87,7 @@ public class PrincipalPanel extends JPanel {
         graphics2D.drawString("Se ha terminado el juego, algunos aviones se han estrellado", 50, 100);
         graphics2D.drawString(dashBoard.presenter.getAirplanesLandedCount(),50,200);
         graphics2D.drawString(dashBoard.presenter.getTimeInRunning(),50,300);
-        graphics2D.drawString(dashBoard.presenter.getAirplanesFlighting(),50,400);
+        graphics2D.drawString(dashBoard.presenter.getAirplanesFlying(),50,400);
         graphics2D.drawString("Volver al inicio",300,500);
         graphics2D.setColor(Color.cyan);
         graphics2D.drawPolygon(new Polygon(new int[]{269,258,280},new int[]{478,500,500},3));

@@ -91,8 +91,8 @@ public class ModelAirplane implements AirplaneContract.Model {
     }
 
     @Override
-    public String getAirplanesFlighting() {
-        return managerAirplanes.getAirplanesFlighting();
+    public String getAirplanesFlying() {
+        return managerAirplanes.getAirplanesFlying();
     }
 
     @Override

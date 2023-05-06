@@ -117,7 +117,7 @@ public class ManagerAirplanes extends Thread{
 
     private Integer[] generateInnitPosition() {
         Integer[] pos;
-        int yLimit = GlobalConfigs.FRAME_HEIGHT - GlobalConfigs.AIRPLANE_HEIGHT;
+        int yLimit = GlobalConfigs.realFrameHeight - GlobalConfigs.AIRPLANE_HEIGHT;
         int xLimit = GlobalConfigs.FRAME_WIDTH - GlobalConfigs.AIRPLANE_WIDTH;
         int mid = GlobalConfigs.AIRPLANE_WIDTH / 2;
         switch ((int) (Math.random()*4)){
@@ -132,7 +132,7 @@ public class ManagerAirplanes extends Thread{
     public List<Integer> generateDefaultYPositions(int innitPos){
         List<Integer> ys = new ArrayList<>();
         ys.add(innitPos);
-        int middlePosition = GlobalConfigs.FRAME_HEIGHT / 2;
+        int middlePosition = GlobalConfigs.realFrameHeight / 2;
         if (innitPos < middlePosition){
             for (int i = innitPos + 1; i < middlePosition ; i++) {
                 ys.add(i);
@@ -228,7 +228,7 @@ public class ManagerAirplanes extends Thread{
         return "Numero de aviones aterrizados: " + finishedAirplanesCount;
     }
 
-    public String getAirplanesFlighting(){
+    public String getAirplanesFlying(){
         return "Numero de aviones en vuelo: " + airplanes.size();
     }
 

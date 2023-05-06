@@ -88,8 +88,8 @@ public class PresenterAirplane implements AirplaneContract.Presenter{
     }
 
     @Override
-    public String getAirplanesFlighting() {
-        return model.getAirplanesFlighting();
+    public String getAirplanesFlying() {
+        return model.getAirplanesFlying();
     }
 
     @Override
