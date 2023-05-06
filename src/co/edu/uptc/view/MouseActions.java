@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MouseActions extends MouseAdapter {//verificar cuando se termina terminar todos los procesos
+public class MouseActions extends MouseAdapter {
     private JPopupMenu popupSelected;
     private JPopupMenu popupNotSelected;
     private JMenuItem pause;
