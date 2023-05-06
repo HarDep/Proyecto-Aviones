@@ -22,7 +22,7 @@ public class PrincipalPanel extends JPanel {
     Airplane auxAirplane1;
     Airplane auxAirplane2;
     boolean isSelectedAirplane = false;
-    boolean isStadisticsPage = false;
+    boolean isStatisticsPage = false;
     private boolean isInfoPage = false;
     List<Integer> posXs;
     List<Integer> posYs;
@@ -80,7 +80,7 @@ public class PrincipalPanel extends JPanel {
         graphics2D.drawString("Acerca del juego",200,300);
         graphics2D.drawString("Salir del juego",200,400);
     }
-    public void paintStadisticsPage(Graphics2D graphics2D){
+    public void paintStatisticsPage(Graphics2D graphics2D){
         graphics2D.drawImage(UtilImages.getInstanceChrashImage(getWidth(),getHeight()),0,0,null);
         graphics2D.setColor(new Color(50, 121, 203));
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 22));
@@ -115,8 +115,8 @@ public class PrincipalPanel extends JPanel {
             paintFirstPage(graphics2D);
         if (dashBoard.presenter.isRunning())
             paintGame(graphics2D);
-        if (isStadisticsPage)
-            paintStadisticsPage(graphics2D);
+        if (isStatisticsPage)
+            paintStatisticsPage(graphics2D);
         if (isInfoPage)
             paintInfoPage(graphics2D);
     }
@@ -205,10 +205,10 @@ public class PrincipalPanel extends JPanel {
                     if (y1 == 350)
                         dashBoard.terminateAll();
                 }
-            }else if (isStadisticsPage){
+            }else if (isStatisticsPage){
                 if (e.getKeyCode() == KeyEvent.VK_ENTER){
                     isFirstPage = true;
-                    isStadisticsPage = false;
+                    isStatisticsPage = false;
                     repaint();
                 }
             }else if (isInfoPage){

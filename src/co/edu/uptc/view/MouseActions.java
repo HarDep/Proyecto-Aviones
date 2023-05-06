@@ -25,7 +25,7 @@ public class MouseActions extends MouseAdapter {
     }
 
     private void addActionChangeAirplaneParameters() {
-        JMenuItem changeParameters = new JMenuItem("Cambiar caracteristicas del avión");
+        JMenuItem changeParameters = new JMenuItem("Cambiar características del avión");
         popupSelected.add(changeParameters);
         changeParameters.addActionListener(e -> principalPanel.changeParameters());
     }

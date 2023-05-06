@@ -1,6 +1,5 @@
 package co.edu.uptc.view;
 
-import co.edu.uptc.configs.GlobalConfigs;
 import co.edu.uptc.pojos.AirplaneColor;
 
 import javax.swing.*;
