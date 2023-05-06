@@ -38,9 +38,9 @@ public class ManagerAirplanes extends Thread{
                     if (isTerminate) break;
                 }
                 count++;
-                if (count == 24 && airplanes.size() < 15)
+                if (count == 50 && airplanes.size() < 15)//24
                     createAirplane();
-                if (count == 24) count = 0;
+                if (count == 50) count = 0;
                 repaint();
                 sleep(150);
             } catch (InterruptedException e) {
@@ -74,6 +74,7 @@ public class ManagerAirplanes extends Thread{
         List<Integer> xs = generateDefaultXPositions(innitPosition[0]);
         List<Integer> ys = generateDefaultYPositions(innitPosition[1]);
         equalizeSize(xs,ys);
+        System.out.println("xs: " + xs.size() + ", ys: " + ys.size());
         AirplaneColor color = generateColor();
         double speed = (Math.random() * GlobalConfigs.SPEED_LIMIT) + 1;
         Airplane airplane = new Airplane(airplanes.size(), ys,xs, speed, color);

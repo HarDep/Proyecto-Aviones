@@ -65,7 +65,7 @@ public class PrincipalPanel extends JPanel {
                 graphics2D.drawPolyline(xs, ys, xs.length);
             }
         }
-        graphics2D.setColor(Color.magenta);
+        graphics2D.setColor(Color.MAGENTA);
         graphics2D.drawString(dashBoard.presenter.getAirplanesFlying(), 20, 553);
         graphics2D.drawString(dashBoard.presenter.getAirplanesLandedCount(), 20,608);
     }
@@ -82,7 +82,7 @@ public class PrincipalPanel extends JPanel {
     }
     public void paintStatisticsPage(Graphics2D graphics2D){
         graphics2D.drawImage(UtilImages.getInstanceChrashImage(getWidth(),getHeight()),0,0,null);
-        graphics2D.setColor(new Color(50, 121, 203));
+        graphics2D.setColor(new Color(156, 101, 164));
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 22));
         graphics2D.drawString("Se ha terminado el juego, algunos aviones se han estrellado", 50, 100);
         graphics2D.drawString(dashBoard.presenter.getAirplanesLandedCount(),50,200);

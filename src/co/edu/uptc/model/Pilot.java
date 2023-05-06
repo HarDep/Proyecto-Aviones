@@ -76,7 +76,6 @@ public class Pilot extends Thread {
         if (isToUp && airplane.getPosY() > 0 && airplane.getPosX() > 0){
             xs.set(0,airplane.getPosX()-1);
             ys.set(0, airplane.getPosY()-1);
-            isToUp = true;
         }else if (airplane.getPosY() < GlobalConfigs.realFrameHeight && airplane.getPosX() < GlobalConfigs.FRAME_WIDTH){
             xs.set(0,airplane.getPosX()+1);
             ys.set(0, airplane.getPosY()+1);
@@ -100,10 +99,10 @@ public class Pilot extends Thread {
                 int difX = airplane.getPosX() - xs.get(0);
                 int difY = airplane.getPosY() - ys.get(0);
                 if (Math.abs(difY) > 1 || Math.abs(difX) > 1){
-                    xs.add(0, difX > 1 ? (airplane.getPosX() - 1) :
-                            (difX == 1 ? (airplane.getPosX()): (airplane.getPosX() + 1)) );
-                    ys.add(0, difY > 1 ? (airplane.getPosY() - 1) :
-                            (difY == 1 ? (airplane.getPosY()): (airplane.getPosY() + 1)) );
+                    xs.add(0, difX > 0 ? (airplane.getPosX() - 1) :
+                            (difX == 0 ? (airplane.getPosX()): (airplane.getPosX() + 1)) );
+                    ys.add(0, difY > 0 ? (airplane.getPosY() - 1) :
+                            (difY == 0 ? (airplane.getPosY()): (airplane.getPosY() + 1)) );
                 }
             }
         }
@@ -126,12 +125,14 @@ public class Pilot extends Thread {
 
     private void checkCrash() {
         for (Airplane airplane1: managerAirplanes.airplanes.values()) {//TODO verificar si se tocan realmente
-            int difX = Math.abs(airplane.getPosX() - airplane1.getPosX());
-            int difY = Math.abs(airplane.getPosY() - airplane1.getPosY());
-            if (difX < GlobalConfigs.AIRPLANE_WIDTH &&
-                    difY < GlobalConfigs.AIRPLANE_HEIGHT && airplane.getId() != airplane1.getId()){
-                managerAirplanes.terminateAll();
-                managerAirplanes.model.presenter.notifyEndGame();
+            synchronized (airplane1){
+                int difX = airplane.getPosX() - airplane1.getPosX();
+                int difY = airplane.getPosY() - airplane1.getPosY();
+                if (Math.hypot(difX,difY) < GlobalConfigs.AIRPLANE_WIDTH
+                        && airplane.getId() != airplane1.getId()){
+                    managerAirplanes.terminateAll();
+                    managerAirplanes.model.presenter.notifyEndGame();
+                }
             }
         }
     }
