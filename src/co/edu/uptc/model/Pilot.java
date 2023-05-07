@@ -6,11 +6,9 @@ import co.edu.uptc.pojos.Airplane;
 import java.util.List;
 
 public class Pilot extends Thread {
-    private final Airplane airplane;
+    final Airplane airplane;
     private int delay;
-    private boolean isRunning = true;
     private boolean isTerminate = false;
-    private boolean isPaused = false;
     private final ManagerAirplanes managerAirplanes;
     private boolean isToUp = true;
 
@@ -38,16 +36,17 @@ public class Pilot extends Thread {
     }
 
     public void run(){
-        while (isRunning){
+        while (managerAirplanes.isRunning){
             try {
-                while (isPaused){
+                while (managerAirplanes.isPaused){
                     sleep(300);
-                    if (isTerminate) break;
+                    if (managerAirplanes.isTerminate || isTerminate) break;
                 }
                 move();
                 checkCrash();
                 checkFinish();
                 sleep(delay);
+                if (managerAirplanes.isTerminate || isTerminate) break;
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -114,18 +113,20 @@ public class Pilot extends Thread {
         int yMax = (GlobalConfigs.realFrameHeight / 2) + (GlobalConfigs.AIRSTRIP_HEIGHT / 2);
         int x = airplane.getPosX() + (GlobalConfigs.AIRPLANE_WIDTH / 2);
         if (x == xTotal && airplane.getPosY() > yMin && airplane.getPosY() < yMax && (!isTerminate)){
+            System.out.println("entra");
             synchronized (managerAirplanes.airplanes){
                 managerAirplanes.airplanes.remove(airplane.getId(),airplane);
                 managerAirplanes.pilots.remove(airplane.getId(),this);
             }
-            terminateAll();
             managerAirplanes.addOneFinishedAirplanes();
+            terminateAll();
         }
     }
 
     private void checkCrash() {
         for (Airplane airplane1: managerAirplanes.airplanes.values()) {//TODO verificar si se tocan realmente
-            synchronized (airplane1){
+            Pilot pilot = managerAirplanes.pilots.get(airplane1.getId());
+            synchronized (pilot.airplane){
                 //como circulo tomando el ancho como el diametro
                 /*int difX = airplane.getPosX() - airplane1.getPosX();
                 int difY = airplane.getPosY() - airplane1.getPosY();
@@ -149,12 +150,5 @@ public class Pilot extends Thread {
 
     public void terminateAll(){
         isTerminate = true;
-        isRunning = false;
-    }
-    public void pause(){
-        isPaused = true;
-    }
-    public void resuming(){
-        isPaused = false;
     }
 }

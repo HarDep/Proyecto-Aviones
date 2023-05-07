@@ -15,10 +15,11 @@ public class ManagerAirplanes extends Thread{
     Map<Integer,Pilot> pilots;
     ModelAirplane model;
     boolean isRunning = false;
-    private boolean isTerminate = false;
+    boolean isTerminate = false;
     boolean isPaused = false;
     private int count = 0;
     private long innitTime = 0;
+    private int idCount = 0;
 
     public ManagerAirplanes(ModelAirplane model) {
         this.model = model;
@@ -40,7 +41,8 @@ public class ManagerAirplanes extends Thread{
                 count++;
                 if (count == 50 && airplanes.size() < 15)
                     createAirplane();
-                if (count == 50) count = 0;
+                if (count == 50)
+                    count = 0;
                 repaint();
                 sleep(150);
                 if (isTerminate) break;
@@ -62,7 +64,8 @@ public class ManagerAirplanes extends Thread{
         List<Airplane> clone = new ArrayList<>();
         synchronized (airplanes){
             for (Airplane airplane:airplanes.values()) {
-                synchronized (airplane){
+                Pilot pilot = pilots.get(airplane.getId());
+                synchronized (pilot.airplane){
                     clone.add(airplane.clone());
                 }
             }
@@ -77,12 +80,13 @@ public class ManagerAirplanes extends Thread{
         equalizeSize(xs,ys);
         AirplaneColor color = generateColor();
         double speed = (Math.random() * GlobalConfigs.SPEED_LIMIT) + 1;
-        Airplane airplane = new Airplane(airplanes.size(), ys,xs, speed, color);
+        Airplane airplane = new Airplane(idCount, ys,xs, speed, color);
         if (checkAirplaneOverlap(airplane)){
             Pilot pilot = new Pilot(airplane, this);
             airplanes.put(airplane.getId(), airplane);
             pilots.put(airplane.getId(), pilot);
             pilot.start();
+            idCount++;
         }else
             createAirplane();
     }
@@ -186,9 +190,10 @@ public class ManagerAirplanes extends Thread{
         }
     }
     public void setAirplaneRoute(Airplane airplane){
+        Pilot pilot = pilots.get(airplane.getId());
         Airplane toSet = airplanes.get(airplane.getId());
         if (toSet != null){
-            synchronized (toSet){
+            synchronized (pilot.airplane){
                 toSet.setxPositions(new ArrayList<>(airplane.getxPositions()));
                 toSet.setyPositions(new ArrayList<>(airplane.getyPositions()));
                 toSet.setEditedRoute(true);
@@ -209,21 +214,12 @@ public class ManagerAirplanes extends Thread{
     public void terminateAll(){
         isTerminate = true;
         isRunning = false;
-        for (Pilot pilot: pilots.values()) {
-            pilot.terminateAll();
-        }
     }
     public void pause(){
         isPaused = true;
-        for (Pilot pilot: pilots.values()) {
-            pilot.pause();
-        }
     }
     public void resuming(){
         isPaused = false;
-        for (Pilot pilot: pilots.values()) {
-            pilot.resuming();
-        }
     }
     public String getAirplanesLandedCount(){
         return "Numero de aviones aterrizados: " + finishedAirplanesCount;
