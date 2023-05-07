@@ -60,8 +60,8 @@ public class PrincipalPanel extends JPanel {
                     -mid, null);
             graphics2D.setTransform(or);
             if (airplane.isEditedRoute()){
-                int[] xs = dashBoard.presenter.parseToIntArray(airplane.getxPositions());
-                int[] ys = dashBoard.presenter.parseToIntArray(airplane.getyPositions());
+                int[] xs = dashBoard.presenter.parseToIntArray(new ArrayList<>(airplane.getxPositions()));
+                int[] ys = dashBoard.presenter.parseToIntArray(new ArrayList<>(airplane.getyPositions()));
                 graphics2D.drawPolyline(xs, ys, xs.length);
             }
         }
@@ -103,7 +103,7 @@ public class PrincipalPanel extends JPanel {
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 50));
         graphics2D.drawString("Volver atrás",200,400);
         graphics2D.setColor(Color.RED);
-        graphics2D.drawPolygon(new Polygon(new int[]{169,158,180},new int[]{378,400,400},3));
+        graphics2D.drawPolygon(new Polygon(new int[]{160,140,180},new int[]{360,400,400},3));
 
     }
 
@@ -158,6 +158,7 @@ public class PrincipalPanel extends JPanel {
     }
 
     public void showFirstPage(){
+        clearActions();
         isFirstPage = true;
         repaint();
     }

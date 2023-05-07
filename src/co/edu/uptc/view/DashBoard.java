@@ -37,6 +37,7 @@ public class DashBoard extends JFrame implements AirplaneContract.View {
 
     @Override
     public void notifyEndGame() {
+        principalPanel.isFirstPage = false;
         principalPanel.isStatisticsPage = true;
         principalPanel.clearActions();
         principalPanel.repaint();

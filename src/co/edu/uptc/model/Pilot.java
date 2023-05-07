@@ -126,9 +126,19 @@ public class Pilot extends Thread {
     private void checkCrash() {
         for (Airplane airplane1: managerAirplanes.airplanes.values()) {//TODO verificar si se tocan realmente
             synchronized (airplane1){
-                int difX = airplane.getPosX() - airplane1.getPosX();
+                //como circulo tomando todoel diametro
+                /*int difX = airplane.getPosX() - airplane1.getPosX();
                 int difY = airplane.getPosY() - airplane1.getPosY();
                 if (Math.hypot(difX,difY) < GlobalConfigs.AIRPLANE_WIDTH
+                        && airplane.getId() != airplane1.getId()){
+                    managerAirplanes.terminateAll();
+                    managerAirplanes.model.presenter.notifyEndGame();
+                }*/
+                //como circulo tomando como diametro la hipotenusa medios
+                double newDistance = Math.hypot(GlobalConfigs.AIRPLANE_HEIGHT,GlobalConfigs.AIRPLANE_WIDTH) / 2;
+                int difX = airplane.getPosX() - airplane1.getPosX();
+                int difY = airplane.getPosY() - airplane1.getPosY();
+                if (Math.hypot(difX,difY) < newDistance
                         && airplane.getId() != airplane1.getId()){
                     managerAirplanes.terminateAll();
                     managerAirplanes.model.presenter.notifyEndGame();
