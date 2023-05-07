@@ -126,7 +126,7 @@ public class Pilot extends Thread {
     private void checkCrash() {
         for (Airplane airplane1: managerAirplanes.airplanes.values()) {//TODO verificar si se tocan realmente
             synchronized (airplane1){
-                //como circulo tomando todoel diametro
+                //como circulo tomando el ancho como el diametro
                 /*int difX = airplane.getPosX() - airplane1.getPosX();
                 int difY = airplane.getPosY() - airplane1.getPosY();
                 if (Math.hypot(difX,difY) < GlobalConfigs.AIRPLANE_WIDTH

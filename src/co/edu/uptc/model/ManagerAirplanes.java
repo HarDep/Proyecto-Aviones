@@ -103,14 +103,14 @@ public class ManagerAirplanes extends Thread{
     private void equalizeSize(List<Integer> xs, List<Integer> ys) {
         if (xs.size() < ys.size()){
             int toAdd = xs.get(xs.size()-1);
-            int diference = ys.size() - xs.size();
-            for (int i = diference; i > 0; i--) {
+            int dif = ys.size() - xs.size();
+            for (int i = dif; i > 0; i--) {
                 xs.add(toAdd);
             }
         }else {
             int toAdd = ys.get(ys.size()-1);
-            int diference = xs.size() - ys.size();
-            for (int i = diference; i > 0; i--) {
+            int dif = xs.size() - ys.size();
+            for (int i = dif; i > 0; i--) {
                 ys.add(toAdd);
             }
         }
