@@ -113,7 +113,6 @@ public class Pilot extends Thread {
         int yMax = (GlobalConfigs.realFrameHeight / 2) + (GlobalConfigs.AIRSTRIP_HEIGHT / 2);
         int x = airplane.getPosX() + (GlobalConfigs.AIRPLANE_WIDTH / 2);
         if (x == xTotal && airplane.getPosY() > yMin && airplane.getPosY() < yMax && (!isTerminate)){
-            System.out.println("entra");
             synchronized (managerAirplanes.airplanes){
                 managerAirplanes.airplanes.remove(airplane.getId(),airplane);
                 managerAirplanes.pilots.remove(airplane.getId(),this);
@@ -124,18 +123,9 @@ public class Pilot extends Thread {
     }
 
     private void checkCrash() {
-        for (Airplane airplane1: managerAirplanes.airplanes.values()) {//TODO verificar si se tocan realmente
+        for (Airplane airplane1: managerAirplanes.airplanes.values()) {
             Pilot pilot = managerAirplanes.pilots.get(airplane1.getId());
             synchronized (pilot.airplane){
-                //como circulo tomando el ancho como el diametro
-                /*int difX = airplane.getPosX() - airplane1.getPosX();
-                int difY = airplane.getPosY() - airplane1.getPosY();
-                if (Math.hypot(difX,difY) < GlobalConfigs.AIRPLANE_WIDTH
-                        && airplane.getId() != airplane1.getId()){
-                    managerAirplanes.terminateAll();
-                    managerAirplanes.model.presenter.notifyEndGame();
-                }*/
-                //como circulo tomando como diametro la hipotenusa medios
                 double newDistance = Math.hypot(GlobalConfigs.AIRPLANE_HEIGHT,GlobalConfigs.AIRPLANE_WIDTH) / 2;
                 int difX = airplane.getPosX() - airplane1.getPosX();
                 int difY = airplane.getPosY() - airplane1.getPosY();

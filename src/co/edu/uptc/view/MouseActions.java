@@ -10,8 +10,7 @@ public class MouseActions extends MouseAdapter {
     private JPopupMenu popupNotSelected;
     private JMenuItem pause;
     private JMenuItem resume;
-    private boolean isReadyEdit=false;
-    private PrincipalPanel principalPanel;
+    private final PrincipalPanel principalPanel;
 
     public MouseActions(PrincipalPanel principalPanel) {
         this.principalPanel = principalPanel;
@@ -86,7 +85,7 @@ public class MouseActions extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         if (principalPanel.dashBoard.presenter.isRunning()){
             if (e.getButton() == MouseEvent.BUTTON3){
-                isReadyEdit = false;
+                boolean isReadyEdit = false;
                 principalPanel.auxAirplane2 = principalPanel.dashBoard.presenter.getAirplane(e.getX(),e.getY());
                 if (principalPanel.auxAirplane2 != null)
                     isReadyEdit = true;
