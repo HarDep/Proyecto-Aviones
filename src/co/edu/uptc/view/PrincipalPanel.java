@@ -41,8 +41,8 @@ public class PrincipalPanel extends JPanel {
     }
     private void paintGame(Graphics2D graphics2D){
         graphics2D.setColor(Color.RED);
-        graphics2D.drawImage(UtilImages.getInstanceAirstrip(),(dashBoard.getWidth()/2) - (GlobalConfigs.AIRSTRIP_WIDTH
-                / 2), (dashBoard.getHeight()/2) - (GlobalConfigs.AIRSTRIP_HEIGHT / 2),null);
+        graphics2D.drawImage(UtilImages.getInstanceAirstrip(),(GlobalConfigs.FRAME_WIDTH/2) - (GlobalConfigs.AIRSTRIP_WIDTH
+                / 2), (GlobalConfigs.realFrameHeight/2) - (GlobalConfigs.AIRSTRIP_HEIGHT / 2),null);
         if (posXs!=null){
             if (posXs.size()>0){
                 int[] xs = dashBoard.presenter.parseToIntArray(new ArrayList<>(posXs));

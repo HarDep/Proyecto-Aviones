@@ -67,13 +67,11 @@ public class ModelAirplane implements AirplaneContract.Model {
     public int[] parseToIntArray(List<Integer> array) {
         int[] arr = new int[array.size()];
         int count = 0;
-        synchronized (array){
             for (Integer num:array) {
                 if (num!=null)
                     arr[count] = num;
                 count++;
             }
-        }
         return arr;
     }
 

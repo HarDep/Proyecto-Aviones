@@ -78,7 +78,8 @@ public class Pilot extends Thread {
         }else if (airplane.getPosY() < GlobalConfigs.realFrameHeight && airplane.getPosX() < GlobalConfigs.FRAME_WIDTH){
             xs.set(0,airplane.getPosX()+1);
             ys.set(0, airplane.getPosY()+1);
-            isToUp = false;
+            if (isToUp)
+                isToUp = false;
         }else{
             isToUp = true;
             regenerateRoute(xs, ys);
