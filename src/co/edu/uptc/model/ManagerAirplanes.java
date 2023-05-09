@@ -75,8 +75,8 @@ public class ManagerAirplanes extends Thread{
 
     public void createAirplane(){
         Integer[] innitPosition = generateInnitPosition();
-        List<Integer> xs = generateDefaultXPositions(innitPosition[0]);
-        List<Integer> ys = generateDefaultYPositions(innitPosition[1]);
+        List<Integer> xs = generateDefaultPositions(innitPosition[0], GlobalConfigs.FRAME_WIDTH);
+        List<Integer> ys = generateDefaultPositions(innitPosition[1], GlobalConfigs.realFrameHeight);
         equalizeSize(xs,ys);
         AirplaneColor color = generateColor();
         double speed = (Math.random() * GlobalConfigs.SPEED_LIMIT) + 1;
@@ -134,40 +134,22 @@ public class ManagerAirplanes extends Thread{
         return pos;
     }
 
-    public List<Integer> generateDefaultYPositions(int innitPos){
-        List<Integer> ys = new ArrayList<>();
-        ys.add(innitPos);
-        int middlePosition = GlobalConfigs.realFrameHeight / 2;
+    public List<Integer> generateDefaultPositions(int innitPos, int axisSize){
+        List<Integer> positions = new ArrayList<>();
+        positions.add(innitPos);
+        int middlePosition = axisSize / 2;
         if (innitPos < middlePosition){
             for (int i = innitPos + 1; i < middlePosition ; i++) {
-                ys.add(i);
+                positions.add(i);
             }
         }else {
             for (int i = innitPos - 1; i > middlePosition ; i--) {
-                ys.add(i);
+                positions.add(i);
             }
         }
         if (innitPos!=middlePosition)
-            ys.add(middlePosition);
-        return ys;
-    }
-
-    public List<Integer> generateDefaultXPositions(int innitPos){
-        List<Integer> xs = new ArrayList<>();
-        xs.add(innitPos);
-        int middlePosition = GlobalConfigs.FRAME_WIDTH / 2;
-        if (innitPos < middlePosition){
-            for (int i = innitPos + 1; i < middlePosition ; i++) {
-                xs.add(i);
-            }
-        }else {
-            for (int i = innitPos - 1; i > middlePosition ; i--) {
-                xs.add(i);
-            }
-        }
-        if (innitPos!=middlePosition)
-            xs.add(middlePosition);
-        return xs;
+            positions.add(middlePosition);
+        return positions;
     }
 
     private AirplaneColor generateColor() {
