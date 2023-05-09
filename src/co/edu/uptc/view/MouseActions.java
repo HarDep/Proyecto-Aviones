@@ -40,9 +40,12 @@ public class MouseActions extends MouseAdapter {
         JMenuItem terminate = new JMenuItem("Terminar el juego");
         popupNotSelected.add(terminate);
         terminate.addActionListener(e -> {
-            if (principalPanel.dashBoard.presenter.isRunning()){
-                principalPanel.dashBoard.presenter.terminate();
-                principalPanel.showFirstPage();
+            if (JOptionPane.showConfirmDialog(null,"¿Quiere terminar el juego?",
+                    "Terminar juego",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                if (principalPanel.dashBoard.presenter.isRunning()){
+                    principalPanel.dashBoard.presenter.terminate();
+                    principalPanel.showFirstPage();
+                }
             }
         });
     }
