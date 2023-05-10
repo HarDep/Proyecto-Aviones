@@ -11,6 +11,7 @@ public class Pilot extends Thread {
     private boolean isTerminate = false;
     private final ManagerAirplanes managerAirplanes;
     private boolean isToUp = true;
+    private boolean isArrived = false;
 
     public Pilot(Airplane airplane,ManagerAirplanes managerAirplanes) {
         this.airplane = airplane;
@@ -113,7 +114,9 @@ public class Pilot extends Thread {
         int xTotal = (GlobalConfigs.FRAME_WIDTH / 2) + (GlobalConfigs.AIRSTRIP_WIDTH / 2);
         int yMax = (GlobalConfigs.realFrameHeight / 2) + (GlobalConfigs.AIRSTRIP_HEIGHT / 2);
         int x = airplane.getPosX() + (GlobalConfigs.AIRPLANE_WIDTH / 2);
-        if (x == xTotal && airplane.getPosY() > yMin && airplane.getPosY() < yMax && (!isTerminate)){
+        if (x == (xTotal+1) && airplane.getPosY() > yMin && airplane.getPosY() < yMax && (!isTerminate))
+            isArrived = true;
+        if (x == xTotal && airplane.getPosY() > yMin && airplane.getPosY() < yMax && (!isTerminate) && isArrived){
             synchronized (managerAirplanes.airplanes){
                 managerAirplanes.airplanes.remove(airplane.getId(),airplane);
                 managerAirplanes.pilots.remove(airplane.getId(),this);
@@ -124,14 +127,13 @@ public class Pilot extends Thread {
     }
 
     private void checkCrash() {
+        double newDistance = Math.hypot(GlobalConfigs.AIRPLANE_HEIGHT,GlobalConfigs.AIRPLANE_WIDTH) / 2;
         for (Airplane airplane1: managerAirplanes.airplanes.values()) {
             Pilot pilot = managerAirplanes.pilots.get(airplane1.getId());
             synchronized (pilot.airplane){
-                double newDistance = Math.hypot(GlobalConfigs.AIRPLANE_HEIGHT,GlobalConfigs.AIRPLANE_WIDTH) / 2;
                 int difX = airplane.getPosX() - airplane1.getPosX();
                 int difY = airplane.getPosY() - airplane1.getPosY();
-                if (Math.hypot(difX,difY) < newDistance
-                        && airplane.getId() != airplane1.getId()){
+                if (Math.hypot(difX,difY) < newDistance && airplane.getId() != airplane1.getId()){
                     managerAirplanes.terminateAll();
                     managerAirplanes.model.presenter.notifyEndGame();
                 }

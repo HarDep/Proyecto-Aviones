@@ -39,9 +39,9 @@ public class ManagerAirplanes extends Thread{
                     if (isTerminate) break;
                 }
                 count++;
-                if (count == 50 && airplanes.size() < 15)
+                if (count == 70 && airplanes.size() < 15)
                     createAirplane();
-                if (count == 50)
+                if (count == 70)
                     count = 0;
                 repaint();
                 sleep(150);
@@ -95,9 +95,9 @@ public class ManagerAirplanes extends Thread{
         for (int i = 0; i < airplanes.size(); i++) {
             if (airplanes.containsKey(i)){
                 Airplane airplane = airplanes.get(i);
-                int difX = Math.abs(airplane.getPosX() - airplane1.getPosX());
-                int difY = Math.abs(airplane.getPosY() - airplane1.getPosY());
-                if (difX < GlobalConfigs.AIRPLANE_WIDTH && difY < GlobalConfigs.AIRPLANE_HEIGHT)
+                int difX = airplane.getPosX() - airplane1.getPosX();
+                int difY = airplane.getPosY() - airplane1.getPosY();
+                if (Math.hypot(difX,difY) < (1.5 * GlobalConfigs.AIRPLANE_WIDTH))
                     return false;
             }
         }

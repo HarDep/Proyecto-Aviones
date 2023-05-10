@@ -136,6 +136,7 @@ public class PrincipalPanel extends JPanel {
     public void changeParameters(){
         if (auxAirplane2!= null && dashBoard.presenter.isRunning()){
             dialogModifications.isReadyToEdit = false;
+            dialogModifications.putAirplaneParameters(auxAirplane2);
             dialogModifications.setVisible(true);
             if (dialogModifications.isReadyToEdit){
                 auxAirplane2.setAirplaneColor(dialogModifications.color);

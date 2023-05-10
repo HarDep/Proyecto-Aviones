@@ -1,5 +1,6 @@
 package co.edu.uptc.view;
 
+import co.edu.uptc.pojos.Airplane;
 import co.edu.uptc.pojos.AirplaneColor;
 
 import javax.swing.*;
@@ -49,6 +50,17 @@ public class DialogModifications extends JDialog {
         add(cancel);
         change.addActionListener(e -> doChange());
         cancel.addActionListener(e -> this.setVisible(false));
+    }
+
+    public void putAirplaneParameters(Airplane airplane){
+        switch (airplane.getAirplaneColor()) {
+            case BLUE -> colorType.setSelectedIndex(0);
+            case GREEN -> colorType.setSelectedIndex(1);
+            case RED -> colorType.setSelectedIndex(2);
+            case YELLOW -> colorType.setSelectedIndex(3);
+            case BLACK -> colorType.setSelectedIndex(4);
+        }
+        speedVal.setText(String.valueOf(airplane.getSpeed()));
     }
 
     private void doChange() {
