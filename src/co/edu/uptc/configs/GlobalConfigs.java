@@ -26,14 +26,14 @@ public class GlobalConfigs {
                 se hace de otra manera no se registrara el aterrizaje.
                 
                 Acciones del juego:
-                * Para cambiar la ruta del avión se debe seleccionar el avión con un click izquierdo, luego
+                ◉ Para cambiar la ruta del avión se debe seleccionar el avión con un click izquierdo, luego
                 se describe la ruta deseada a través del movimiento del mouse, para terminar de dirigir
                 el avión se da otro click izquierdo.
-                * Para modificar la velocidad o el color del avión se debe dar un click derecho sobre el
+                ◉ Para modificar la velocidad o el color del avión se debe dar un click derecho sobre el
                 correspondiente avión, en seguida saldrá un popup para poder seleccionar la opción de
                 modificar el avión el cual al seleccionarlo desplegara un cuadro de dialogo en el cual
                 se podrá modificar estos atributos del avión.
-                * Para pausar, continuar o terminar el juego se debe dar un click derecho fuera de cualquier
+                ◉ Para pausar, continuar o terminar el juego se debe dar un click derecho fuera de cualquier
                 avión, en seguida saldrá un popup con las anteriores opciones, cabe aclarar que se puede
                 pausar si el juego esta corriendo, y continuar si el juego esta pausado, en el caso de
                 seleccionar la opción de terminar el juego saldrá un cuadro de dialogo para confirmar la
