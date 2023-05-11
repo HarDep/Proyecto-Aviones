@@ -58,8 +58,8 @@ public class PresenterAirplane implements AirplaneContract.Presenter{
     }
 
     @Override
-    public void repaint() {
-        view.repaint();
+    public void paintAirplanes() {
+        view.paintAirplanes();
     }
 
     @Override

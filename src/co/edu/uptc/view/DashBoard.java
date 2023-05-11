@@ -9,7 +9,7 @@ import java.awt.event.ComponentEvent;
 
 public class DashBoard extends JFrame implements AirplaneContract.View {
     AirplaneContract.Presenter presenter;
-    private PrincipalPanel principalPanel;
+    private final PrincipalPanel principalPanel;
 
     public DashBoard() {
         putConfigs();
@@ -33,6 +33,11 @@ public class DashBoard extends JFrame implements AirplaneContract.View {
     @Override
     public void setPresenter(AirplaneContract.Presenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public void paintAirplanes() {
+        principalPanel.repaint();
     }
 
     @Override

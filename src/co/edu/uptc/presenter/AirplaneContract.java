@@ -33,7 +33,7 @@ public interface AirplaneContract {
         void setAirplaneRoute(Airplane airplane);
         Airplane getAirplane(int x,int y);
         void notifyEndGame();
-        void repaint();
+        void paintAirplanes();
         void start();
         int[] parseToIntArray(List<Integer> array);
         boolean isPaused();
@@ -44,7 +44,7 @@ public interface AirplaneContract {
     }
     interface View{
         void setPresenter(Presenter presenter);
-        void repaint();
+        void paintAirplanes();
         void notifyEndGame();
         void start();
     }

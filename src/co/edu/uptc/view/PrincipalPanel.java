@@ -27,17 +27,36 @@ public class PrincipalPanel extends JPanel {
     List<Integer> posXs;
     List<Integer> posYs;
     DialogModifications dialogModifications;
+    private JTextArea infoField;
 
     public PrincipalPanel(DashBoard dashBoard) {
         this.dashBoard = dashBoard;
         this.dialogModifications = new DialogModifications();
         posXs = new ArrayList<>();
         posYs = new ArrayList<>();
+        setBackground(Color.WHITE);
+        setLayout(null);
         setFocusable(true);
         addKeyListener(new KeyActions());
+        putMouseConfigs();
+        putInfoText();
+    }
+
+    private void putMouseConfigs(){
         MouseActions mouseActions = new MouseActions(this);
         addMouseListener(mouseActions);
         addMouseMotionListener(mouseActions);
+    }
+
+    private void putInfoText(){
+        infoField = new JTextArea();
+        infoField.setEditable(false);
+        infoField.setVisible(false);
+        add(infoField);
+        infoField.setFont(new Font("TimesRoman", Font.BOLD, 15));
+        infoField.setForeground(Color.black);
+        infoField.setText(GlobalConfigs.INFO_TEXT);
+        infoField.setBounds(50,150,850,350);
     }
     private void paintGame(Graphics2D graphics2D){
         graphics2D.setColor(Color.RED);
@@ -96,15 +115,13 @@ public class PrincipalPanel extends JPanel {
     private void paintInfoPage(Graphics2D graphics2D){
         graphics2D.setColor(Color.black);
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 50));
-        graphics2D.drawString("Juego Aviones Version 1",200,100);
+        graphics2D.drawString("Juego Aviones Version 1",50,50);
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 30));
-        graphics2D.drawString("Autor: Harold Ricardo Alvarado Leandro",200,200);
-        graphics2D.drawString("Como jugar: -----------",200,300);
+        graphics2D.drawString("Autor: Harold Ricardo Alvarado Leandro",50,100);
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 50));
-        graphics2D.drawString("Volver atrás",200,400);
+        graphics2D.drawString("Volver atrás",200,550);
         graphics2D.setColor(Color.RED);
-        graphics2D.drawPolygon(new Polygon(new int[]{160,140,180},new int[]{360,400,400},3));
-
+        graphics2D.drawPolygon(new Polygon(new int[]{155,130,180},new int[]{500,550,550},3));
     }
 
     @Override
@@ -202,6 +219,7 @@ public class PrincipalPanel extends JPanel {
                     if (y1 == 250){
                         isFirstPage = false;
                         isInfoPage = true;
+                        infoField.setVisible(true);
                         repaint();
                     }
                     if (y1 == 350)
@@ -216,6 +234,7 @@ public class PrincipalPanel extends JPanel {
             }else if (isInfoPage){
                 if (e.getKeyCode() == KeyEvent.VK_ENTER){
                     isFirstPage = true;
+                    infoField.setVisible(false);
                     isInfoPage = false;
                     repaint();
                 }

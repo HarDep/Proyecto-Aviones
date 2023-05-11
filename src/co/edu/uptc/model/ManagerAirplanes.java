@@ -39,7 +39,7 @@ public class ManagerAirplanes extends Thread{
                     if (isTerminate) break;
                 }
                 count++;
-                if (count == 70 && airplanes.size() < 15)
+                if ((count == 70 && airplanes.size() < 15) || airplanes.size() == 0)
                     createAirplane();
                 if (count == 70)
                     count = 0;
@@ -53,7 +53,7 @@ public class ManagerAirplanes extends Thread{
     }
 
     public void repaint(){
-        model.presenter.repaint();
+        model.presenter.paintAirplanes();
     }
 
     public List<Airplane> getAirplanes() {
