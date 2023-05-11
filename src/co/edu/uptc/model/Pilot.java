@@ -127,13 +127,13 @@ public class Pilot extends Thread {
     }
 
     private void checkCrash() {
-        double newDistance = Math.hypot(GlobalConfigs.AIRPLANE_HEIGHT,GlobalConfigs.AIRPLANE_WIDTH) / 2;
+        double distance = Math.hypot(GlobalConfigs.AIRPLANE_HEIGHT,GlobalConfigs.AIRPLANE_WIDTH) / 2;
         for (Airplane airplane1: managerAirplanes.airplanes.values()) {
             Pilot pilot = managerAirplanes.pilots.get(airplane1.getId());
             synchronized (pilot.airplane){
                 int difX = airplane.getPosX() - airplane1.getPosX();
                 int difY = airplane.getPosY() - airplane1.getPosY();
-                if (Math.hypot(difX,difY) < newDistance && airplane.getId() != airplane1.getId()){
+                if (Math.hypot(difX,difY) < distance && airplane.getId() != airplane1.getId()){
                     managerAirplanes.terminateAll();
                     managerAirplanes.model.presenter.notifyEndGame();
                 }

@@ -108,18 +108,18 @@ public class PrincipalPanel extends JPanel {
                 GlobalConfigs.realFrameHeight),0,0,null);
         graphics2D.setColor(Color.black);
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 22));
-        graphics2D.drawString("Se ha terminado el juego, algunos aviones se han estrellado", 100, 100);
-        graphics2D.drawString("Volver al inicio",400,500);
-        graphics2D.setColor(Color.GRAY);
+        graphics2D.drawString("Se ha terminado el juego, algunos aviones se han estrellado", 100, 50);
+        graphics2D.drawString("Volver al inicio",400,450);
+        graphics2D.setColor(new Color(94, 180, 37));
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 40));
         graphics2D.drawString("Numero de aviones aterrizados: " + dashBoard.presenter.getAirplanesLandedCount(),
-                100,200);
+                100,150);
         graphics2D.drawString("Tiempo obtenido: " + dashBoard.presenter.getTimeInRunning() + " segundos",
-                100,300);
+                100,250);
         graphics2D.drawString("Numero de aviones en vuelo: " + dashBoard.presenter.getAirplanesFlying(),
-                100,400);
+                100,350);
         graphics2D.setColor(Color.RED);
-        graphics2D.drawPolygon(new Polygon(new int[]{369,358,380},new int[]{478,500,500},3));
+        graphics2D.drawPolygon(new Polygon(new int[]{369,358,380},new int[]{428,450,450},3));
     }
 
     private void paintInfoPage(Graphics2D graphics2D){
