@@ -18,7 +18,7 @@ public class GlobalConfigs {
     public static final double SPEED_LIMIT = 5;
     public static final String TITLE = "Airplanes";
     public static final String INFO_TEXT = """
-                Como jugar:\s
+                Acciones del juego:\s
                 
                 Para cambiar la ruta del avión se debe seleccionar el avión con un click izquierdo, luego
                 se describe la ruta deseada a través del movimiento del mouse, para terminar de dirigir

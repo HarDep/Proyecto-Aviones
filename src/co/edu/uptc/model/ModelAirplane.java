@@ -86,17 +86,17 @@ public class ModelAirplane implements AirplaneContract.Model {
     }
 
     @Override
-    public String getAirplanesLandedCount() {
+    public int getAirplanesLandedCount() {
         return managerAirplanes.getAirplanesLandedCount();
     }
 
     @Override
-    public String getAirplanesFlying() {
+    public int getAirplanesFlying() {
         return managerAirplanes.getAirplanesFlying();
     }
 
     @Override
-    public String getTimeInRunning() {
+    public int getTimeInRunning() {
         return managerAirplanes.getTimeInRunning();
     }
 }

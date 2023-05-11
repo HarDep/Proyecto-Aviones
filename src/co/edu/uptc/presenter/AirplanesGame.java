@@ -4,9 +4,9 @@ import co.edu.uptc.model.ModelAirplane;
 import co.edu.uptc.view.DashBoard;
 
 public class AirplanesGame {
-    private AirplaneContract.Model model;
-    private AirplaneContract.Presenter presenter;
-    private AirplaneContract.View view;
+    private final AirplaneContract.Model model;
+    private final AirplaneContract.Presenter presenter;
+    private final AirplaneContract.View view;
 
     public AirplanesGame() {
         model = new ModelAirplane();

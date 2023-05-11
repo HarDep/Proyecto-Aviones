@@ -18,9 +18,9 @@ public interface AirplaneContract {
         int[] parseToIntArray(List<Integer> array);
         boolean isPaused();
         boolean isRunning();
-        String getAirplanesLandedCount();
-        String getAirplanesFlying();
-        String getTimeInRunning();
+        int getAirplanesLandedCount();
+        int getAirplanesFlying();
+        int getTimeInRunning();
     }
     interface Presenter{
         void setModel(Model model);
@@ -38,9 +38,9 @@ public interface AirplaneContract {
         int[] parseToIntArray(List<Integer> array);
         boolean isPaused();
         boolean isRunning();
-        String getAirplanesLandedCount();
-        String getAirplanesFlying();
-        String getTimeInRunning();
+        int getAirplanesLandedCount();
+        int getAirplanesFlying();
+        int getTimeInRunning();
     }
     interface View{
         void setPresenter(Presenter presenter);

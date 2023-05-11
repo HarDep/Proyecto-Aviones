@@ -203,17 +203,16 @@ public class ManagerAirplanes extends Thread{
     public void resuming(){
         isPaused = false;
     }
-    public String getAirplanesLandedCount(){
-        return "Numero de aviones aterrizados: " + finishedAirplanesCount;
+    public int getAirplanesLandedCount(){
+        return finishedAirplanesCount;
     }
 
-    public String getAirplanesFlying(){
-        return "Numero de aviones en vuelo: " + airplanes.size();
+    public int getAirplanesFlying(){
+        return airplanes.size();
     }
 
-    public String getTimeInRunning(){
-        long seconds = (System.currentTimeMillis() - innitTime) / 1000;
-        return  "Tiempo obtenido: " + seconds + " segundos";
+    public int getTimeInRunning(){
+        return (int) ((System.currentTimeMillis() - innitTime) / 1000);
     }
 
 }

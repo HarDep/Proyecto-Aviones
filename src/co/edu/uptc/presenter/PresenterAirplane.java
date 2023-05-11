@@ -83,17 +83,17 @@ public class PresenterAirplane implements AirplaneContract.Presenter{
     }
 
     @Override
-    public String getAirplanesLandedCount() {
+    public int getAirplanesLandedCount() {
         return model.getAirplanesLandedCount();
     }
 
     @Override
-    public String getAirplanesFlying() {
+    public int getAirplanesFlying() {
         return model.getAirplanesFlying();
     }
 
     @Override
-    public String getTimeInRunning() {
+    public int getTimeInRunning() {
         return model.getTimeInRunning();
     }
 }
