@@ -101,7 +101,7 @@ public class PrincipalPanel extends JPanel {
         graphics2D.drawString("Acerca del juego",200,300);
         graphics2D.drawString("Salir del juego",200,400);
     }
-    public void paintStatisticsPage(Graphics2D graphics2D){
+    private void paintStatisticsPage(Graphics2D graphics2D){
         graphics2D.drawImage(UtilImages.getInstanceChrashImage(getWidth(),getHeight()),0,0,null);
         graphics2D.setColor(new Color(156, 101, 164));
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 22));

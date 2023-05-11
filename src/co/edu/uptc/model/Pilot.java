@@ -54,7 +54,7 @@ public class Pilot extends Thread {
         }
     }
 
-    public void move(){
+    private void move(){
         synchronized (airplane){
             List<Integer> xs= airplane.getxPositions();
             List<Integer> ys = airplane.getyPositions();

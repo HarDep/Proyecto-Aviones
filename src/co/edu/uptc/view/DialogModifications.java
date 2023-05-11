@@ -86,7 +86,7 @@ public class DialogModifications extends JDialog {
             speedVal.setText("1.0");
         }
     }
-    public KeyAdapter getCheckKey(){
+    private KeyAdapter getCheckKey(){
         return new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {

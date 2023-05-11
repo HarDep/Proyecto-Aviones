@@ -43,7 +43,7 @@ public class ManagerAirplanes extends Thread{
                     createAirplane();
                 if (count == 70)
                     count = 0;
-                repaint();
+                paintAirplanes();
                 sleep(150);
                 if (isTerminate) break;
             } catch (InterruptedException e) {
@@ -52,7 +52,7 @@ public class ManagerAirplanes extends Thread{
         }
     }
 
-    public void repaint(){
+    private void paintAirplanes(){
         model.presenter.paintAirplanes();
     }
 
@@ -73,7 +73,7 @@ public class ManagerAirplanes extends Thread{
         return clone;
     }
 
-    public void createAirplane(){
+    private void createAirplane(){
         Integer[] innitPosition = generateInnitPosition();
         List<Integer> xs = generateDefaultPositions(innitPosition[0], GlobalConfigs.FRAME_WIDTH);
         List<Integer> ys = generateDefaultPositions(innitPosition[1], GlobalConfigs.realFrameHeight);
@@ -134,7 +134,7 @@ public class ManagerAirplanes extends Thread{
         return pos;
     }
 
-    public List<Integer> generateDefaultPositions(int innitPos, int axisSize){
+    private List<Integer> generateDefaultPositions(int innitPos, int axisSize){
         List<Integer> positions = new ArrayList<>();
         positions.add(innitPos);
         int middlePosition = axisSize / 2;
