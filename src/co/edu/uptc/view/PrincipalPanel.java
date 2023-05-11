@@ -56,7 +56,7 @@ public class PrincipalPanel extends JPanel {
         infoField.setFont(new Font("TimesRoman", Font.BOLD, 15));
         infoField.setForeground(Color.black);
         infoField.setText(GlobalConfigs.INFO_TEXT);
-        infoField.setBounds(50,150,850,350);
+        infoField.setBounds(50,125,850,400);
     }
     private void paintGame(Graphics2D graphics2D){
         graphics2D.setColor(Color.RED);
@@ -124,9 +124,9 @@ public class PrincipalPanel extends JPanel {
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 30));
         graphics2D.drawString("Autor: Harold Ricardo Alvarado Leandro",50,100);
         graphics2D.setFont(new Font("TimesRoman", Font.BOLD, 50));
-        graphics2D.drawString("Volver atrás",200,550);
+        graphics2D.drawString("Volver atrás",200,575);
         graphics2D.setColor(Color.RED);
-        graphics2D.drawPolygon(new Polygon(new int[]{155,130,180},new int[]{500,550,550},3));
+        graphics2D.drawPolygon(new Polygon(new int[]{155,130,180},new int[]{525,575,575},3));
     }
 
     @Override
