@@ -127,7 +127,7 @@ public class Pilot extends Thread {
     }
 
     private void checkCrash() {
-        double distance = (Math.hypot(GlobalConfigs.AIRPLANE_HEIGHT,GlobalConfigs.AIRPLANE_WIDTH) / 2) + 4;
+        double distance = Math.hypot(GlobalConfigs.AIRPLANE_HEIGHT,GlobalConfigs.AIRPLANE_WIDTH) / 2;
         for (Airplane airplane1: managerAirplanes.airplanes.values()) {
             Pilot pilot = managerAirplanes.pilots.get(airplane1.getId());
             synchronized (pilot.airplane){
