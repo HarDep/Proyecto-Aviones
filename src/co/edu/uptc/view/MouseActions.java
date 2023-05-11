@@ -44,6 +44,7 @@ public class MouseActions extends MouseAdapter {
                     "Terminar juego",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                 if (principalPanel.dashBoard.presenter.isRunning()){
                     principalPanel.dashBoard.presenter.terminate();
+                    principalPanel.dashBoard.setResizable(true);
                     principalPanel.showFirstPage();
                 }
             }

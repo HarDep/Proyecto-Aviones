@@ -21,14 +21,8 @@ public class DashBoard extends JFrame implements AirplaneContract.View {
         setTitle(GlobalConfigs.TITLE);
         setSize(GlobalConfigs.TOTAL_DIMENSION);
         setLocationRelativeTo(null);
-        setResizable(false);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentHidden(ComponentEvent e) {
-                terminateAll();
-            }
-        });
+        addComponentListener(getComponentAdapter());
     }
     @Override
     public void setPresenter(AirplaneContract.Presenter presenter) {
@@ -45,6 +39,7 @@ public class DashBoard extends JFrame implements AirplaneContract.View {
         principalPanel.isFirstPage = false;
         principalPanel.isStatisticsPage = true;
         principalPanel.clearActions();
+        setResizable(true);
         principalPanel.repaint();
     }
 
@@ -59,5 +54,21 @@ public class DashBoard extends JFrame implements AirplaneContract.View {
     public void start() {
         this.setVisible(true);
         GlobalConfigs.realFrameHeight = principalPanel.getHeight();
+    }
+
+    private ComponentAdapter getComponentAdapter(){
+        return new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                GlobalConfigs.realFrameWidth = principalPanel.getWidth();
+                GlobalConfigs.realFrameHeight = principalPanel.getHeight();
+                repaint();
+            }
+
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                terminateAll();
+            }
+        };
     }
 }

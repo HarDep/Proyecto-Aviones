@@ -9,7 +9,7 @@ public class GlobalConfigs {
     public static final String GREEN_AIRPLANE_PATH = "resources/assets/airplaneG.png";
     public static final String BLACK_AIRPLANE_PATH = "resources/assets/airplane.png";
     public static final Dimension TOTAL_DIMENSION = new Dimension(1000,700);
-    public static final int FRAME_WIDTH = 1000;
+    public static int realFrameWidth = 1000;
     public static int realFrameHeight = 700;
     public static final int AIRPLANE_WIDTH = 40;
     public static final int AIRPLANE_HEIGHT = 40;

@@ -17,25 +17,21 @@ public class UtilImages {
     private static Image instanceChrashImage;
 
     public static Image getInstanceChrashImage(int w, int h){
-        if (instanceChrashImage == null){
-            try {
-                instanceChrashImage = ImageIO.read(new File("resources/assets/choque.png")
-                ).getScaledInstance(w, h,0);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+        try {
+            instanceChrashImage = ImageIO.read(new File("resources/assets/choque.png")
+            ).getScaledInstance(w, h,0);
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return instanceChrashImage;
     }
 
     public static Image getInstanceInnitImage(int w, int h){
-        if (instanceInnitImage == null){
-            try {
-                instanceInnitImage = ImageIO.read(new File("resources/assets/inicio.png")
-                ).getScaledInstance(w, h,0);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+        try {
+            instanceInnitImage = ImageIO.read(new File("resources/assets/inicio.png")
+            ).getScaledInstance(w, h,0);
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return instanceInnitImage;
     }

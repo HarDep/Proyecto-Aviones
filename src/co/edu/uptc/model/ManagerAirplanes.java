@@ -19,6 +19,7 @@ public class ManagerAirplanes extends Thread{
     boolean isPaused = false;
     private int count = 0;
     private long innitTime = 0;
+    private long finishTime = 0;
     private int idCount = 0;
 
     public ManagerAirplanes(ModelAirplane model) {
@@ -75,7 +76,7 @@ public class ManagerAirplanes extends Thread{
 
     private void createAirplane(){
         Integer[] innitPosition = generateInnitPosition();
-        List<Integer> xs = generateDefaultPositions(innitPosition[0], GlobalConfigs.FRAME_WIDTH);
+        List<Integer> xs = generateDefaultPositions(innitPosition[0], GlobalConfigs.realFrameWidth);
         List<Integer> ys = generateDefaultPositions(innitPosition[1], GlobalConfigs.realFrameHeight);
         equalizeSize(xs,ys);
         AirplaneColor color = generateColor();
@@ -123,7 +124,7 @@ public class ManagerAirplanes extends Thread{
     private Integer[] generateInnitPosition() {
         Integer[] pos;
         int yLimit = GlobalConfigs.realFrameHeight - GlobalConfigs.AIRPLANE_HEIGHT;
-        int xLimit = GlobalConfigs.FRAME_WIDTH - GlobalConfigs.AIRPLANE_WIDTH;
+        int xLimit = GlobalConfigs.realFrameWidth - GlobalConfigs.AIRPLANE_WIDTH;
         int mid = GlobalConfigs.AIRPLANE_WIDTH / 2;
         switch ((int) (Math.random()*4)){
             case 0 -> pos = new Integer[]{mid,(int) (Math.random()*yLimit) + mid};
@@ -212,7 +213,9 @@ public class ManagerAirplanes extends Thread{
     }
 
     public int getTimeInRunning(){
-        return (int) ((System.currentTimeMillis() - innitTime) / 1000);
+        if (finishTime == 0)
+            finishTime = System.currentTimeMillis();
+        return (int) ((finishTime - innitTime) / 1000);
     }
 
 }

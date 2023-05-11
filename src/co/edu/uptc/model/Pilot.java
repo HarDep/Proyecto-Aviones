@@ -76,7 +76,7 @@ public class Pilot extends Thread {
         if (isToUp && airplane.getPosY() > 0 && airplane.getPosX() > 0){
             xs.set(0,airplane.getPosX()-1);
             ys.set(0, airplane.getPosY()-1);
-        }else if (airplane.getPosY() < GlobalConfigs.realFrameHeight && airplane.getPosX() < GlobalConfigs.FRAME_WIDTH){
+        }else if (airplane.getPosY() < GlobalConfigs.realFrameHeight && airplane.getPosX() < GlobalConfigs.realFrameWidth){
             xs.set(0,airplane.getPosX()+1);
             ys.set(0, airplane.getPosY()+1);
             if (isToUp)
@@ -111,7 +111,7 @@ public class Pilot extends Thread {
 
     private void checkFinish() {
         int yMin = (GlobalConfigs.realFrameHeight / 2) - (GlobalConfigs.AIRSTRIP_HEIGHT / 2);
-        int xTotal = (GlobalConfigs.FRAME_WIDTH / 2) + (GlobalConfigs.AIRSTRIP_WIDTH / 2);
+        int xTotal = (GlobalConfigs.realFrameWidth / 2) + (GlobalConfigs.AIRSTRIP_WIDTH / 2);
         int yMax = (GlobalConfigs.realFrameHeight / 2) + (GlobalConfigs.AIRSTRIP_HEIGHT / 2);
         int x = airplane.getPosX() + (GlobalConfigs.AIRPLANE_WIDTH / 2);
         if (x == (xTotal+1) && airplane.getPosY() > yMin && airplane.getPosY() < yMax && (!isTerminate))
