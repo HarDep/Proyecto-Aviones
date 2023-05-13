@@ -3,11 +3,11 @@ package co.edu.uptc.configs;
 import java.awt.*;
 
 public class GlobalConfigs {
-    public static final String BLUE_AIRPLANE_PATH = "resources/assets/airplaneB.png";
-    public static final String RED_AIRPLANE_PATH = "resources/assets/airplaneR.png";
-    public static final String YELLOW_AIRPLANE_PATH = "resources/assets/airplaneY.png";
-    public static final String GREEN_AIRPLANE_PATH = "resources/assets/airplaneG.png";
-    public static final String BLACK_AIRPLANE_PATH = "resources/assets/airplane.png";
+    public static final String BLUE_AIRPLANE_PATH = "resources/assets/imgBu.png";
+    public static final String RED_AIRPLANE_PATH = "resources/assets/imgR.png";
+    public static final String YELLOW_AIRPLANE_PATH = "resources/assets/imgY.png";
+    public static final String GREEN_AIRPLANE_PATH = "resources/assets/imgG.png";
+    public static final String BLACK_AIRPLANE_PATH = "resources/assets/imgBl.png";
     public static final Dimension TOTAL_DIMENSION = new Dimension(1000,700);
     public static int realFrameWidth = 1000;
     public static int realFrameHeight = 700;

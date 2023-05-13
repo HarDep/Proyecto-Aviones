@@ -29,7 +29,7 @@ public class Pilot extends Thread {
     private void putOrientation(List<Integer> xs, List<Integer> ys) {
         int difX = airplane.getPosX() - xs.get(0);
         int difY = airplane.getPosY() - ys.get(0);
-        airplane.setAngle(Math.atan2(difY,difX) + (Math.PI/2));
+        airplane.setAngle(Math.atan2(difY,difX) + Math.PI);
     }
 
     public void updateDelay(){
@@ -127,7 +127,7 @@ public class Pilot extends Thread {
     }
 
     private void checkCrash() {
-        double distance = Math.hypot(GlobalConfigs.AIRPLANE_HEIGHT,GlobalConfigs.AIRPLANE_WIDTH) / 2;
+        double distance = (Math.hypot(GlobalConfigs.AIRPLANE_HEIGHT,GlobalConfigs.AIRPLANE_WIDTH) / 2) + 4;
         for (Airplane airplane1: managerAirplanes.airplanes.values()) {
             Pilot pilot = managerAirplanes.pilots.get(airplane1.getId());
             synchronized (pilot.airplane){

@@ -63,6 +63,9 @@ public class PrincipalPanel extends JPanel {
         graphics2D.drawImage(UtilImages.getInstanceAirstrip(),(GlobalConfigs.realFrameWidth / 2)
                 - (GlobalConfigs.AIRSTRIP_WIDTH / 2), (GlobalConfigs.realFrameHeight / 2)
                 - (GlobalConfigs.AIRSTRIP_HEIGHT / 2),null);
+        graphics2D.drawRect((GlobalConfigs.realFrameWidth / 2)
+                + (GlobalConfigs.AIRSTRIP_WIDTH / 2) - GlobalConfigs.AIRPLANE_WIDTH, (GlobalConfigs.realFrameHeight / 2)
+                - (GlobalConfigs.AIRSTRIP_HEIGHT / 2),GlobalConfigs.AIRPLANE_WIDTH,GlobalConfigs.AIRSTRIP_HEIGHT);
         if (posXs!=null){
             if (posXs.size()>0){
                 int[] xs = dashBoard.presenter.parseToIntArray(new ArrayList<>(posXs));
