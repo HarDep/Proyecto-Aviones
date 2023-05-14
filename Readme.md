@@ -4,6 +4,7 @@
 
 
 ![img1.png](resources%2Fassets%2Fimg1.png)
+![img2.png](resources%2Fassets%2Fimg2.png)
 
 ## Autor: Harold Ricardo Alvarado Leandro
 ## Mayo de 2023
