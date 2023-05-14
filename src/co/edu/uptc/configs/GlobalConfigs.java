@@ -19,11 +19,11 @@ public class GlobalConfigs {
     public static final String TITLE = "Airplanes";
     public static final String INFO_TEXT = """
                 Lugar de llegada a la pista:\s
-                Para poder aterrizar un avión en la pista se debe ingresar el avión de manera horizontal
-                en la zona derecha de la pista (zona que esta marcada con el numero 60), solo esta zona esta
-                habilitada para el aterrizaje del avión el cual se debe de hacer horizontalmente direccionando
-                el movimiento hacia el interior de la pista, y dentro del area vertical que ocupa la pista, si
-                se hace de otra manera no se registrara el aterrizaje.
+                Para poder aterrizar un avión en la pista se debe ingresar el avión en la zona derecha de la
+                pista (zona que esta marcada con el numero 60), solo esta zona esta habilitada para el
+                aterrizaje del avión, el aterrizaje se debe de hacer dentro del area que se remarca con un
+                rectángulo rojo direccionando el movimiento únicamente desde el lado derecho del rectángulo
+                rojo hacia el interior de la pista, si se hace de otra manera no se registrara el aterrizaje.
                 
                 Acciones del juego:
                 ◉ Para cambiar la ruta del avión se debe seleccionar el avión con un click izquierdo, luego
