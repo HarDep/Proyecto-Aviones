@@ -88,7 +88,7 @@ public class MouseActions extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (principalPanel.dashBoard.presenter.isRunning()){
-            if (e.getButton() == MouseEvent.BUTTON3){
+            if (e.getButton() == MouseEvent.BUTTON3 && (!principalPanel.isSelectedAirplane)){
                 boolean isReadyEdit = false;
                 principalPanel.auxAirplane2 = principalPanel.dashBoard.presenter.getAirplane(e.getX(),e.getY());
                 if (principalPanel.auxAirplane2 != null)
