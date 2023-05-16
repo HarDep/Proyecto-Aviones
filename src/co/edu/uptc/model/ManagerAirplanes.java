@@ -41,9 +41,9 @@ public class ManagerAirplanes extends Thread{
                     if (isTerminate) break;
                 }
                 count++;
-                if ((count == 70 && airplanes.size() < 15) || airplanes.size() == 0)
+                if ((count == 85 && airplanes.size() < 15) || airplanes.size() == 0)
                     createAirplane();
-                if (count == 70)
+                if (count == 85)
                     count = 0;
                 paintAirplanes();
                 sleep(150);
@@ -76,35 +76,20 @@ public class ManagerAirplanes extends Thread{
     }
 
     private void createAirplane(){
-        Integer[] innitPosition = generateInnitPosition();
+        double randomNum = Math.random();
+        Integer[] innitPosition = generateInnitPosition(randomNum);
         List<Integer> xs = generateDefaultPositions(innitPosition[0], GlobalConfigs.realFrameWidth);
         List<Integer> ys = generateDefaultPositions(innitPosition[1], GlobalConfigs.realFrameHeight);
         equalizeSize(xs,ys);
-        double speed = (Math.random() * GlobalConfigs.SPEED_LIMIT) + 1;
-        Airplane airplane = new Airplane(idCount, ys,xs, speed, colorNumber);
-        if (checkAirplaneOverlap(airplane)){
-            Pilot pilot = new Pilot(airplane, this);
-            airplanes.put(airplane.getId(), airplane);
-            pilots.put(airplane.getId(), pilot);
-            pilot.start();
-            idCount++;
-            colorNumber ++;
-            if (colorNumber == 5) colorNumber = 0;
-        }else
-            createAirplane();
-    }
-
-    private boolean checkAirplaneOverlap(Airplane airplane1){
-        for (int i = 0; i < airplanes.size(); i++) {
-            if (airplanes.containsKey(i)){
-                Airplane airplane = airplanes.get(i);
-                int difX = airplane.getPosX() - airplane1.getPosX();
-                int difY = airplane.getPosY() - airplane1.getPosY();
-                if (Math.hypot(difX,difY) < (1.5 * GlobalConfigs.AIRPLANE_WIDTH))
-                    return false;
-            }
-        }
-        return true;
+        Airplane airplane = new Airplane(idCount, ys, xs,
+                (randomNum * GlobalConfigs.SPEED_LIMIT) + 1, colorNumber);
+        Pilot pilot = new Pilot(airplane, this);
+        airplanes.put(airplane.getId(), airplane);
+        pilots.put(airplane.getId(), pilot);
+        pilot.start();
+        idCount++;
+        colorNumber++;
+        if (colorNumber == 5) colorNumber = 0;
     }
 
     private void equalizeSize(List<Integer> xs, List<Integer> ys) {
@@ -123,16 +108,16 @@ public class ManagerAirplanes extends Thread{
         }
     }
 
-    private Integer[] generateInnitPosition() {
+    private Integer[] generateInnitPosition(double randomNumber) {
         Integer[] pos;
         int yLimit = GlobalConfigs.realFrameHeight - GlobalConfigs.AIRPLANE_HEIGHT;
         int xLimit = GlobalConfigs.realFrameWidth - GlobalConfigs.AIRPLANE_WIDTH;
         int mid = GlobalConfigs.AIRPLANE_WIDTH / 2;
         switch (countLocation){
-            case 0 -> pos = new Integer[]{mid,(int) (Math.random()*yLimit) + mid};
-            case 1 -> pos = new Integer[]{(int) (Math.random()*xLimit) + mid, mid};
-            case 2 -> pos = new Integer[]{(int) (Math.random()*xLimit) + mid,yLimit + mid};
-            default -> pos = new Integer[]{xLimit + mid,(int) (Math.random()*yLimit) + mid};
+            case 0 -> pos = new Integer[]{mid,(int) (randomNumber*yLimit) + mid};
+            case 1 -> pos = new Integer[]{(int) (randomNumber*xLimit) + mid, mid};
+            case 2 -> pos = new Integer[]{(int) (randomNumber*xLimit) + mid,yLimit + mid};
+            default -> pos = new Integer[]{xLimit + mid,(int) (randomNumber*yLimit) + mid};
         }
         countLocation++;
         if (countLocation == 4) countLocation = 0;
