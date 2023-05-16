@@ -21,6 +21,7 @@ public class ManagerAirplanes extends Thread{
     private long finishTime = 0;
     private int idCount = 0;
     private int colorNumber = 0;
+    private int countLocation = 0;
 
     public ManagerAirplanes(ModelAirplane model) {
         this.model = model;
@@ -127,12 +128,14 @@ public class ManagerAirplanes extends Thread{
         int yLimit = GlobalConfigs.realFrameHeight - GlobalConfigs.AIRPLANE_HEIGHT;
         int xLimit = GlobalConfigs.realFrameWidth - GlobalConfigs.AIRPLANE_WIDTH;
         int mid = GlobalConfigs.AIRPLANE_WIDTH / 2;
-        switch ((int) (Math.random()*4)){
+        switch (countLocation){
             case 0 -> pos = new Integer[]{mid,(int) (Math.random()*yLimit) + mid};
             case 1 -> pos = new Integer[]{(int) (Math.random()*xLimit) + mid, mid};
             case 2 -> pos = new Integer[]{(int) (Math.random()*xLimit) + mid,yLimit + mid};
             default -> pos = new Integer[]{xLimit + mid,(int) (Math.random()*yLimit) + mid};
         }
+        countLocation++;
+        if (countLocation == 4) countLocation = 0;
         return pos;
     }
 

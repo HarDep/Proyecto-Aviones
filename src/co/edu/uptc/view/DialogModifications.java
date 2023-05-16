@@ -3,6 +3,7 @@ package co.edu.uptc.view;
 import co.edu.uptc.pojos.Airplane;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -14,41 +15,46 @@ public class DialogModifications extends JDialog {
     private JTextField speedVal;
 
     public DialogModifications() {
+        putConfigs();
+        createComponents();
+    }
+    private void putConfigs(){
         setModal(true);
-        setSize(420, 280);
+        setSize(420, 180);
         setResizable(false);
+        setTitle("Cambiar características de avión");
         setLocationRelativeTo(null);
         setVisible(false);
         setLayout(null);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        createComponents();
     }
 
     private void createComponents() {
-        JLabel messages = new JLabel("Cambiar valores del avión");
-        messages.setBounds(40,20,340,30);
-        add(messages);
-        JLabel labColor = new JLabel("Seleccione el color");
-        labColor.setBounds(40,70,150,30);
-        add(labColor);
+        addLabel(new JLabel("Seleccione el color"),0);
         colorType = new JComboBox<>(new String[]{"Rojo","Azul","Verde","Amarillo","Negro"});
-        colorType.setBounds(230,70,150,30);
+        putBounds(colorType,0,1);
         add(colorType);
-        JLabel labSpeed = new JLabel("Ingrese la velocidad");
-        labSpeed.setBounds(40,120,150,30);
-        add(labSpeed);
+        addLabel(new JLabel("Ingrese la velocidad"),1);
         speedVal = new JTextField("1.0");
-        speedVal.setBounds(230,120,150,30);
+        putBounds(speedVal,1,1);
         add(speedVal);
         speedVal.addKeyListener(getCheckKey());
         JButton change = new JButton("Cambiar");
-        change.setBounds(40,190,150,30);
+        putBounds(change,2,0);
         add(change);
         JButton cancel = new JButton("Cancelar");
-        cancel.setBounds(230,190,150,30);
+        putBounds(cancel,2,1);
         add(cancel);
         change.addActionListener(e -> doChange());
         cancel.addActionListener(e -> this.setVisible(false));
+    }
+
+    private void putBounds(Component component, int row, int column){
+        component.setBounds(40 + column * 190, 20 + row * 40,150,30);
+    }
+    private void addLabel(JLabel component, int row){
+        component.setBounds(40, 20 + row * 40,150,30);
+        add(component);
     }
 
     public void putAirplaneParameters(Airplane airplane){
