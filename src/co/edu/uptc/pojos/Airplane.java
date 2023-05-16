@@ -9,16 +9,24 @@ public class Airplane implements Cloneable{
     private List<Integer> yPositions;
     private List<Integer> xPositions;
     private double speed;
-    private AirplaneColor airplaneColor;
+    private int colorNumber;
     private double angle;
     private boolean isEditedRoute;
-    public Airplane(int id, List<Integer> yPositions, List<Integer> xPositions, double speed, AirplaneColor airplaneColor) {
+    public Airplane(int id, List<Integer> yPositions, List<Integer> xPositions, double speed, int colorNumber) {
         this.id = id;
         this.yPositions = yPositions;
         this.xPositions = xPositions;
         this.speed = speed;
-        this.airplaneColor = airplaneColor;
+        this.colorNumber = colorNumber;
         this.isEditedRoute = false;
+    }
+
+    public int getColorNumber() {
+        return colorNumber;
+    }
+
+    public void setColorNumber(int colorNumber) {
+        this.colorNumber = colorNumber;
     }
 
     public double getAngle() {
@@ -81,14 +89,6 @@ public class Airplane implements Cloneable{
 
     public void setSpeed(double speed) {
         this.speed = speed;
-    }
-
-    public AirplaneColor getAirplaneColor() {
-        return airplaneColor;
-    }
-
-    public void setAirplaneColor(AirplaneColor airplaneColor) {
-        this.airplaneColor = airplaneColor;
     }
 
     @Override

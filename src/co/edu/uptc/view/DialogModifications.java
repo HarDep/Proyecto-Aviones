@@ -1,7 +1,6 @@
 package co.edu.uptc.view;
 
 import co.edu.uptc.pojos.Airplane;
-import co.edu.uptc.pojos.AirplaneColor;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -9,7 +8,7 @@ import java.awt.event.KeyEvent;
 
 public class DialogModifications extends JDialog {
     boolean isReadyToEdit;
-    AirplaneColor color;
+    int colorNumber;
     double speed;
     private JComboBox<String> colorType;
     private JTextField speedVal;
@@ -32,7 +31,7 @@ public class DialogModifications extends JDialog {
         JLabel labColor = new JLabel("Seleccione el color");
         labColor.setBounds(40,70,150,30);
         add(labColor);
-        colorType = new JComboBox<>(new String[]{"Azul","Verde","Rojo","Amarillo","Negro"});
+        colorType = new JComboBox<>(new String[]{"Rojo","Azul","Verde","Amarillo","Negro"});
         colorType.setBounds(230,70,150,30);
         add(colorType);
         JLabel labSpeed = new JLabel("Ingrese la velocidad");
@@ -53,13 +52,7 @@ public class DialogModifications extends JDialog {
     }
 
     public void putAirplaneParameters(Airplane airplane){
-        switch (airplane.getAirplaneColor()) {
-            case BLUE -> colorType.setSelectedIndex(0);
-            case GREEN -> colorType.setSelectedIndex(1);
-            case RED -> colorType.setSelectedIndex(2);
-            case YELLOW -> colorType.setSelectedIndex(3);
-            case BLACK -> colorType.setSelectedIndex(4);
-        }
+        colorType.setSelectedIndex(airplane.getColorNumber());
         speedVal.setText(String.valueOf(airplane.getSpeed()));
     }
 
@@ -71,13 +64,7 @@ public class DialogModifications extends JDialog {
                         " y ser menor que 6");
                 speedVal.setText("1.0");
             }else {
-                switch (colorType.getSelectedIndex()) {
-                    case 0 -> color = AirplaneColor.BLUE;
-                    case 1 -> color = AirplaneColor.GREEN;
-                    case 2 -> color = AirplaneColor.RED;
-                    case 3 -> color = AirplaneColor.YELLOW;
-                    case 4 -> color = AirplaneColor.BLACK;
-                }
+                colorNumber = colorType.getSelectedIndex();
                 this.setVisible(false);
                 isReadyToEdit = true;
             }

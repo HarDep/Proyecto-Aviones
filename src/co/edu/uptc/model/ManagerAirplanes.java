@@ -2,7 +2,6 @@ package co.edu.uptc.model;
 
 import co.edu.uptc.configs.GlobalConfigs;
 import co.edu.uptc.pojos.Airplane;
-import co.edu.uptc.pojos.AirplaneColor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +20,7 @@ public class ManagerAirplanes extends Thread{
     private long innitTime = 0;
     private long finishTime = 0;
     private int idCount = 0;
+    private int colorNumber = 0;
 
     public ManagerAirplanes(ModelAirplane model) {
         this.model = model;
@@ -79,15 +79,16 @@ public class ManagerAirplanes extends Thread{
         List<Integer> xs = generateDefaultPositions(innitPosition[0], GlobalConfigs.realFrameWidth);
         List<Integer> ys = generateDefaultPositions(innitPosition[1], GlobalConfigs.realFrameHeight);
         equalizeSize(xs,ys);
-        AirplaneColor color = generateColor();
         double speed = (Math.random() * GlobalConfigs.SPEED_LIMIT) + 1;
-        Airplane airplane = new Airplane(idCount, ys,xs, speed, color);
+        Airplane airplane = new Airplane(idCount, ys,xs, speed, colorNumber);
         if (checkAirplaneOverlap(airplane)){
             Pilot pilot = new Pilot(airplane, this);
             airplanes.put(airplane.getId(), airplane);
             pilots.put(airplane.getId(), pilot);
             pilot.start();
             idCount++;
+            colorNumber ++;
+            if (colorNumber == 5) colorNumber = 0;
         }else
             createAirplane();
     }
@@ -153,21 +154,10 @@ public class ManagerAirplanes extends Thread{
         return positions;
     }
 
-    private AirplaneColor generateColor() {
-        AirplaneColor color;
-        switch ((int) (Math.random()*5)) {
-            case 0 -> color = AirplaneColor.RED;
-            case 1 -> color = AirplaneColor.BLUE;
-            case 2 -> color = AirplaneColor.GREEN;
-            case 3 -> color = AirplaneColor.YELLOW;
-            default -> color = AirplaneColor.BLACK;
-        }
-        return color;
-    }
     public void setAirplane(Airplane airplane){
         Airplane toSet = airplanes.get(airplane.getId());
         if (toSet != null){
-            toSet.setAirplaneColor(airplane.getAirplaneColor());
+            toSet.setColorNumber(airplane.getColorNumber());
             toSet.setSpeed(airplane.getSpeed());
             pilots.get(toSet.getId()).updateDelay();
         }

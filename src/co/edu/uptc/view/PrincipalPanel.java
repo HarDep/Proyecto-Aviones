@@ -2,7 +2,6 @@ package co.edu.uptc.view;
 
 import co.edu.uptc.configs.GlobalConfigs;
 import co.edu.uptc.pojos.Airplane;
-import co.edu.uptc.pojos.AirplaneColor;
 import co.edu.uptc.util.UtilImages;
 
 import javax.swing.*;
@@ -79,7 +78,7 @@ public class PrincipalPanel extends JPanel {
             graphics2D.setTransform(new AffineTransform());
             graphics2D.translate(airplane.getPosX(), airplane.getPosY());
             graphics2D.rotate(airplane.getAngle());
-            graphics2D.drawImage(getImage(airplane.getAirplaneColor()), -mid,
+            graphics2D.drawImage(getImage(airplane.getColorNumber()), -mid,
                     -mid, null);
             graphics2D.setTransform(or);
             if (airplane.isEditedRoute()){
@@ -151,13 +150,13 @@ public class PrincipalPanel extends JPanel {
             paintInfoPage(graphics2D);
     }
 
-    private Image getImage(AirplaneColor color){
+    private Image getImage(int colorNumber){
         Image image;
-        switch (color) {
-            case RED -> image = UtilImages.getInstanceAirplaneRed();
-            case BLUE -> image = UtilImages.getInstanceAirplaneBlue();
-            case GREEN -> image = UtilImages.getInstanceAirplaneGreen();
-            case YELLOW -> image = UtilImages.getInstanceAirplaneYellow();
+        switch (colorNumber) {
+            case 0 -> image = UtilImages.getInstanceAirplaneRed();
+            case 1 -> image = UtilImages.getInstanceAirplaneBlue();
+            case 2 -> image = UtilImages.getInstanceAirplaneGreen();
+            case 3 -> image = UtilImages.getInstanceAirplaneYellow();
             default -> image = UtilImages.getInstanceAirplaneBlack();
         }
         return image;
@@ -169,7 +168,7 @@ public class PrincipalPanel extends JPanel {
             dialogModifications.putAirplaneParameters(auxAirplane2);
             dialogModifications.setVisible(true);
             if (dialogModifications.isReadyToEdit){
-                auxAirplane2.setAirplaneColor(dialogModifications.color);
+                auxAirplane2.setColorNumber(dialogModifications.colorNumber);
                 auxAirplane2.setSpeed(dialogModifications.speed);
                 dashBoard.presenter.setAirplane(auxAirplane2);
             }
