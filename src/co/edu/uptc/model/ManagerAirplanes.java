@@ -112,12 +112,11 @@ public class ManagerAirplanes extends Thread{
         Integer[] pos;
         int yLimit = GlobalConfigs.realFrameHeight - GlobalConfigs.AIRPLANE_HEIGHT;
         int xLimit = GlobalConfigs.realFrameWidth - GlobalConfigs.AIRPLANE_WIDTH;
-        int mid = GlobalConfigs.AIRPLANE_WIDTH / 2;
         switch (countLocation){
-            case 0 -> pos = new Integer[]{mid,(int) (randomNumber*yLimit) + mid};
-            case 1 -> pos = new Integer[]{(int) (randomNumber*xLimit) + mid, mid};
-            case 2 -> pos = new Integer[]{(int) (randomNumber*xLimit) + mid,yLimit + mid};
-            default -> pos = new Integer[]{xLimit + mid,(int) (randomNumber*yLimit) + mid};
+            case 0 -> pos = new Integer[]{0,(int) (randomNumber*yLimit)};
+            case 1 -> pos = new Integer[]{(int) (randomNumber*xLimit), 0};
+            case 2 -> pos = new Integer[]{(int) (randomNumber*xLimit),yLimit};
+            default -> pos = new Integer[]{xLimit,(int) (randomNumber*yLimit)};
         }
         countLocation++;
         if (countLocation == 4) countLocation = 0;
