@@ -40,7 +40,7 @@ public class Pilot extends Thread {
         while (managerAirplanes.isRunning){
             try {
                 while (managerAirplanes.isPaused){
-                    sleep(300);
+                    sleep(400);
                     if (managerAirplanes.isTerminate || isTerminate) break;
                 }
                 move();

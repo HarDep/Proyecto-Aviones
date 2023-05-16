@@ -37,7 +37,7 @@ public class ManagerAirplanes extends Thread{
         while (isRunning){
             try {
                 while (isPaused){
-                    sleep(300);
+                    sleep(400);
                     if (isTerminate) break;
                 }
                 count++;
