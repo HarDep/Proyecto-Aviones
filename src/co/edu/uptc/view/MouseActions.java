@@ -18,6 +18,11 @@ public class MouseActions extends MouseAdapter {
         createPopupSelected();
     }
 
+    public void restart(){
+        pause.setEnabled(true);
+        resume.setEnabled(false);
+    }
+
     private void createPopupSelected() {
         popupSelected = new JPopupMenu();
         addActionChangeAirplaneParameters();
@@ -44,6 +49,7 @@ public class MouseActions extends MouseAdapter {
                     "Terminar juego",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                 if (principalPanel.dashBoard.presenter.isRunning()){
                     principalPanel.dashBoard.presenter.terminate();
+                    restart();
                     principalPanel.dashBoard.setResizable(true);
                     principalPanel.showFirstPage();
                 }
